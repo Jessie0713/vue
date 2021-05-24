@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <!-- <img src="../../images/washDrawing/006.JPG"> -->
+        <!-- <img v-bind:src="imgURL"> -->
+        <img :src="imgURL">
+        <p>
+            <input :placeholder="message">
+        </p>
+    </div>
+
+    <script> 
+        new Vue({  
+            el: '#app',
+            data: {  //變數放這裡
+                message: 'Hello Shinnosuke!',
+                imgURL: 'https://i0.wp.com/www.avex.com.tw/shinchanrun/img/header/character_goods_sc.png',
+            },
+            methods: {  //函數(方法)大部分放這裡!
+                
+            },
+        });
+    </script>
+</body>
+</html>

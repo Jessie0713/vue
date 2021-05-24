@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <h2>Classmate</h2>
+        <ol>            
+            <li v-for="item in classmate" @click="CFD101(item.name)">{{item.name}}</li>
+        </ol>
+    </div>
+
+    <script> 
+        // this 代表  function 執行當下的外層物件，所以 this 在執行時才會存在
+        // 1
+        // function test(){
+        //     alert(this);
+        // }
+        // test();  //this 代表 window
+
+        // 2
+        // let data = {
+        //     name: 'Peter',
+        //     age: 40,
+        //     check(){
+        //         alert(this)
+        //     },
+        // };
+        // data.check();  //this 代表 data
+    
+        new Vue({  //在此，this 代表 Vue instance (Vue 實例)
+            el: '#app',
+            data: {  //變數放這裡
+                message: 'Hello',
+                classmate: [{name:'Andy',age:20},
+                            {name:'Brian',age:21},
+                            {name:'Carl',age:25},
+                            {name:'Dale',age:18},
+                        ],
+            },
+            methods: {  //函數(方法)大部分放這裡!
+                CFD101(yourName){
+                    alert(`CFD101 member: ${yourName}`);
+                    alert(this.message);
+                    alert(this.$data.message);
+                    alert(this.$el.nodeName);
+                    alert(this.temp);
+                },
+                temp(){
+                    alert();
+                },
+            },
+        });
+    </script>
+</body>
+</html>

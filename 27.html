@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+      <my-component></my-component><!-- only 全小寫 or kaba-case命名組件，組件用來重複執行 -->
+      
+    </div>
+    <div id="app2"></div>
+
+    <script>
+      //global component
+      // Vue.component('組件名稱'{
+      //   ... 
+      //   template:`定義視覺元件` 
+
+      // })
+      Vue.component('my-component',{
+        template:`
+        <div>
+          <h1><img src="images/foot.gif" alt="">PRODUCT</h1>
+          <h2><img src="images/foot.gif" alt="">PRODUCT</h2>
+          <h3><img src="images/foot.gif" alt="">PRODUCT</h3>
+          
+        </div>
+        
+        `,
+      })
+    
+    
+      new Vue({
+            el: '#app',
+            data: {  //變數放這裡
+                
+            },
+            methods:{
+
+            },
+            mounted:{},
+            //local component
+            components:{
+              // 'my-component':{//kaba-case --> camalCase --> PascalCase
+              //   template:`<h1 style = "color:red;">My Component!</h1>`,
+              // },
+              // 'myComponent':{//camalCase
+              //   template:`<h1 style = "color:green;">My Component!</h1>`,
+              // },
+              // 'MyComponent':{//PascalCase
+              //   template:`<h1 style = "color:blue;">My Component!</h1>`,
+              // },
+            },
+        });
+    </script>
+</body>
+</html>

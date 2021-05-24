@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <style>
+        *{
+            list-style: none;
+            /* font: 16px Calibri; */
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->        
+        <!-- <input type="checkbox" name="interest" value="read"> 閱讀
+        <input type="checkbox" name="interest" value="game"> 電動
+        <input type="checkbox" name="interest" value="sleep"> 睡覺
+        <input type="checkbox" name="interest" value="diving"> 潛水
+        <input type="checkbox" name="interest" value="trip"> 旅遊 -->
+
+        <input type="checkbox" v-model="interest" value="read"> 閱讀
+        <input type="checkbox" v-model="interest" value="game"> 電動
+        <input type="checkbox" v-model="interest" value="sleep"> 睡覺
+        <input type="checkbox" v-model="interest" value="diving"> 潛水
+        <input type="checkbox" v-model="interest" value="trip"> 旅遊
+
+        <h1>{{interest}}</h1>
+
+        <!-- 查看 devtools -->
+        <input type="checkbox" v-model="agree"> 我同意
+
+    </div>
+
+    <script>
+        new Vue({  
+            el: '#app',
+            data: {  //變數放這裡
+                message: '',
+                interest: [],
+                agree: false,
+            },
+            methods: {  //函數(方法)大部分放這裡!
+               
+            },
+            computed: { //函數(方法)也可以放這裡!但是放這裡的函數，不能傳參數，一定要有傳回值(return)
+                
+            },
+        });
+    </script>
+</body>
+</html>

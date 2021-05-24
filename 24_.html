@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <!-- 修改陣列 -->
+        <ul>
+          <!-- <li v-for="num in numArray">{{num}}</li> -->
+          <!-- <li v-for="(num,index) in numArray">{{num}}</li> -->
+          
+        </ul>
+        <!-- 修改物件 -->
+        <!-- <li v-for="value in numObject">{{value}}</li> -->
+        
+    </div>
+
+    <script>
+        let vm = new Vue({  
+            el: '#app', 
+            data: {
+          numArray:[1,2,3,4,5,6,7,8,9,10],
+          //object
+          numObject
+            },
+            methods:{
+
+            },
+
+
+        });
+    </script>
+</body>
+</html>

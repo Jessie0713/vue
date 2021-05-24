@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <todo-list></todo-list>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+            props: ['xyz'],
+            template: `
+                <li> {{xyz}} </li>
+            `,
+        });
+        Vue.component('todo-input', {
+            data(){
+                return {
+                    task: '',
+                };
+            },
+            methods: {
+                submitData(){
+                    // this.$emit('自訂事件'[,.....]);
+                    this.$emit('abc',this.task);
+                    this.task = '';
+                },
+            },
+            template: `
+                <form @submit.prevent="submitData">
+                    <input v-model="task">
+                    <button> Submit </button>
+                </form>
+            `,
+        });
+        Vue.component('todo-list', {
+            data(){
+                return {
+                    tasks: [],
+                };
+            },
+            methods: {
+                addTask(item){
+                    this.tasks.push(item);
+                },
+            },
+            template: `
+                <div>
+                    <todo-input @abc="addTask"></todo-input>
+                        <!--
+                            下層組件(todo-input) 發出自訂事件，
+                            上層組件(todo-list) 用『v-on:自訂事件』或『@自訂事件』接收
+                        -->
+
+                    <ol>
+                        <todo-item v-for="task in tasks" v-bind:xyz="task"></todo-item>
+                            <!--
+                                上層組件(todo-list) 發出自訂屬性 (『v-bind:自訂屬性』或『：自訂屬性』)
+                                下層組件(todo-item) 用props接收
+                            -->
+                    </ol>
+                </div>
+            `,
+        });
+
+        new Vue({  
+            el: '#app', 
+            data: {
+                
+            },
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+<form>
+    <input v-model="task">
+    <button> Submit </button>
+</form>
+<ol>
+    <li></li>
+</ol> 
+-->

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <input v-model="x">+<input v-model="y">=<input v-model="z">
+    </div>
+
+    <script>
+        let vm = new Vue({  
+            el: '#app', 
+            data: {
+              x: 0,
+              y: 0,
+              z: 0,              
+            },
+            methods:{},
+            computed: {
+              z(){
+                  return parseInt(this.x)+parseInt(this.y);//computed 也可以做到watch，但要有return值
+              },
+            },
+            watch: {  //偵聽器：用來偵聽 data 和 computed 的變化
+                // 1 宣告成方法（函數）
+
+                // 2 宣告成物件
+                // x(value){//x變化
+                //   this.z = parseInt(value)+parseInt(this.y);
+                // },
+                // y(value){//y變化
+                //   this.z = parseInt(value)+parseInt(this.x);
+                // },
+
+            },
+        });
+    </script>
+</body>
+</html>

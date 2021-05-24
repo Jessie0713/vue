@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+      <input v-model.lazy = "num"><!--lazy blur才有效--> 
+        <h1> {{numSquare}} </h1>
+    </div>
+
+    <script>
+
+        let vm = new Vue({  
+            el: '#app', 
+            data: {
+                num: 0,
+            },
+            computed:{//不能帶參數
+              numSquare(){
+                return Math.pow(this.num, 2);
+              },
+            },
+            watch:{ //偵聽器，用來偵聽 data 和 computed 的變化
+              //1.宣告方法函數
+              num(){
+                console.log('hello');
+              },
+              num(newValue){
+                console.log(newValue);
+              },
+              num(newValue,oldValue){
+                console.log(`num : ${oldValue}-->${newValue}`);
+              },
+              numSquare(newValue,oldValue){
+                console.log(`numSquare : ${oldValue}-->${newValue}`);
+              },
+
+              //2 宣告物件
+              num: {
+                  handler(newValue,oldValue){//也是一個: function
+                    console.log(`num : ${oldValue}-->${newValue}`);
+                  },
+                  immediate: true,//false by default, if true --> 當vue instance  一建立(create)就立刻執行
+                  deep: false,
+              },
+
+            },
+           
+        });
+    </script>
+</body>
+</html>

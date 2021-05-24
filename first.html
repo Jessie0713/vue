@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIRST</title>
+  <script src="js/vue.js"></script>
+
+</head>
+<body>
+  <div id="app"><!-- html dom template -->
+    <h1>{{message}}</h1>
+    <h2>{{score * 1.05}}</h2>
+    <input type="text">
+  </div>  
+      
+  <script>
+      new Vue({
+        el: '#app',//屬性: 屬性質，start(element)
+        data: {
+          message: 'HELLO',
+          score: 80,
+        },//變數放在這
+      })
+  </script>
+  
+</body>
+</html>

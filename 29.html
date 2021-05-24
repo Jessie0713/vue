@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+      <!-- <button @click= "addCount">Add</button> -->
+      <!-- <button @click= "count+=1">Add</button>
+      <h1>{{count}}</h1> -->
+      <counter></counter>
+    </div>
+
+    <script>
+        //global component
+        // Vue.component('組件名稱', {
+        //     .....
+        //     template: `用來定義視覺元件`,
+        // });
+
+        Vue.component('counter', {
+            data(){//組件data必是function
+              return{
+                count:0,
+                x:5,
+                y:false,
+                z:"ABC",
+              }
+
+            }, 
+            template: `
+            <div>
+              <button @click= "count+=1">Add</button>
+              <h1>{{count}}</h1>
+
+            </div>
+            `,
+        });
+        
+        new Vue({  
+            el: '#app', 
+            data: {
+              count: 0,
+            },
+            methods: {
+         
+            },
+        });
+    </script>
+</body>
+</html>

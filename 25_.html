@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+      <!-- <h1><img src="images/foot.gif" alt="">ABOUT</h1>
+      <h1><img src="images/foot.gif" alt="">PRODUCT</h1>
+      <h1><img src="images/foot.gif" alt="">CONTACT</h1>
+      <h1><img src="images/foot.gif" alt="">DO NOTHING</h1> -->
+
+      <!-- <h1 v-for= "header in headers"><img src="images/foot.gif" alt="">{{header}}</h1> -->
+
+      <template v-for= "(header,index) in headers">
+        <h1><img src="images/foot.gif" :data-index = 'index'>{{header}}</h1>
+      </template>
+
+
+        
+    </div>
+
+    <script>
+        let vm = new Vue({  
+            el: '#app', 
+            data: {
+              headers:['about','product','contact','do nothing','do something'],
+            },
+            methods:{
+
+            },
+
+
+        });
+    </script>
+</body>
+</html>

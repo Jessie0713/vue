@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <style>
+        *{
+            list-style: none;
+            font: 18px Calibri;
+        }
+        ol{
+            padding-inline-start: 30px;
+        }
+        .item{
+            background: #abc;
+            width: 180px;
+            padding: 5px;
+            margin: 5px;
+        }
+        .item:hover{
+            background: #cba;
+            cursor: pointer;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <!-- <form>
+            Your task: <input v-model="task" @>
+            <button>Submit</button>
+        </form> -->
+        <p>
+            Your task: <input v-model="newTask" @keyup.enter="addTask">
+        </p>
+        <ol>
+            <li v-for="(task,index) in tasks" class="item" @click="removeTask(index)">{{task}}</li>
+        </ol>
+    </div>
+
+    <script>
+        new Vue({  
+            el: '#app',
+            data: {  //變數放這裡
+                tasks: [],
+                newTask: '',
+            },
+            methods: {  //函數(方法)大部分放這裡!
+                addTask(){
+                    this.tasks.push(this.newTask);
+                    this.newTask = '';
+                },
+                removeTask(index){
+                    // this.tasks.splice(index);
+                    // this.tasks.splice(index,刪除的筆數);
+                    this.tasks.splice(index,1);
+                },
+            },
+            computed: { //函數(方法)也可以放這裡!但是放這裡的函數，不能傳參數，一定要有傳回值(return)
+              
+            },
+        });
+    </script>
+</body>
+</html>

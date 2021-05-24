@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <h2>Rainbow</h2>
+        <ul>
+            <li v-for="color in colors">{{color}}</li><!--命名 in 物件or陣列，立刻渲染出來，虛擬的dom-->
+        </ul>
+        <ol>
+            <li v-for="item in classmate">{{item.name}}</li>
+        </ol>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr v-for="item in classmate">
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>        
+        new Vue({                    //jquery 真實dom
+            el: '#app',
+            data: {  //變數放這裡
+                message: 'Hello',
+                colors: ['red','orange','yellow','green','blue','indigo','violet'],
+                classmate: [{name:'Andy',age:20},
+                            {name:'Brian',age:21},
+                            {name:'Carl',age:25},
+                            {name:'Dale',age:18},
+                        ],
+            },
+        });
+    </script>
+</body>
+</html>

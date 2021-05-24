@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <select>
+            <option v-for="year in years">{{year}}</option>
+        </select>
+        <select name="theMonth">
+            <!-- <option v-for="month in months">{{month}}</option> -->
+            <option v-for="(month,index) in 12" v-bind:value="index">{{month}}</option>
+        </select>
+        <select>
+            <option v-for="day in 31">{{day}}</option>
+        </select>
+    </div>
+
+    <script>        
+        new Vue({
+            el: '#app',
+            data: {  //變數放這裡
+                message: 'Hello',
+                colors: ['red','orange','yellow','green','blue','indigo','violet'],
+                classmate: [{name:'Andy',age:20},
+                            {name:'Brian',age:21},
+                            {name:'Carl',age:25},
+                            {name:'Dale',age:18},
+                        ],
+                years: [2018,2019,2020,2021,2011],
+                months: ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'],
+            },
+        });
+    </script>
+</body>
+</html>

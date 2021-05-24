@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <h1>{{message}}</h1>
+        <h2 v-show="loading">Hi~</h2><!-- 布琳要不要show，利用css的display屬性，false出現在html內 -->
+        <h3 v-if="loading">Hi~</h3><!-- false不出現在html內變註解，v-for優先等級比v-if高 -->
+    </div>
+
+    <script>        
+        new Vue({
+            el: '#app',
+            data: {  //變數放這裡 可以是字串 變數 布林
+                message: 'Hello',
+                score: 80,
+                loading: true,
+            },
+        });
+    </script>
+</body>
+</html>

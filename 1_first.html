@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <h1>{{message}}</h1>   <!-- {{變數/表達式}} 雙標籤用 渲染 -->
+        <h2>{{score * 1.05}}</h2>
+        <input v-model="message"><!-- v-開始變指令，雙向綁定，單一標籤用> -->
+    </div>
+
+    <script>
+        // let today = new Date();
+        // let vm = new Vue();
+
+        new Vue({
+            // el: '#app',css selector
+            el: document.getElementById('app'),
+            data: {  //變數放這裡，物件
+                message: 'Hello',
+                score: 80,
+            },
+        });//一堆描述包物件裡，屬性:屬性值
+    </script>
+</body>
+</html>

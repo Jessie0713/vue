@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分頁(pagination)功能的概念</title>
+</head>
+<body>
+    <!--  
+    Math.random() ==> 會產生 0 ~ 1(不包含) 之間的亂數
+    
+    產生 1~100 之間的亂數
+    Math.random()                               ==> 0 ~  0.99999
+    Math.random() * 100                         ==> 0 ~ 99.999
+    parseInt(Math.random() * 100)               ==> 0 ~ 99
+    parseInt(Math.random() * 100) + 1           ==> 1 ~ 100
+    parseInt(Math.random() * 亂數總數) + 最小值   ==> 1 ~ 100
+
+    產生 -5~5 之間的亂數
+    parseInt(Math.random() * 11) - 5
+
+    產生 0~100 之間的亂數
+    parseInt(Math.random() * 101) 
+    -->
+    <script>
+        window.onload = function(){
+            //每桶油漆可以漆 200 square feet
+            const COVERAGE = 200;
+            //動態產生 0~500 之間的 square feet
+            let squareFeet = parseInt(Math.random() * 501);
+            document.write(`How much square feet needs to be painted? ${squareFeet} <br>`);
+
+            let cans = parseInt(squareFeet / COVERAGE);
+            cans += (squareFeet % COVERAGE != 0 ) ? 1 : 0;
+
+            let unit = (cans <= 1) ? 'can' : 'cans';
+            document.write(`You need ${cans} ${unit} of paint. <br>`);
+            // cans > 1 --> ? cans
+            // cans <= 1 --> 1 can 或 0 can
+
+            document.write(`=============<p>`);
+            // let allPages = parseInt(Math.random() * 63) + 1;  //63
+            let allPages = 69;
+            document.write(`How do I deal with pagination? ${allPages}<br>`);
+            let perPage = 12;
+
+            let pages = parseInt(allPages / perPage);
+            pages += (allPages % perPage != 0 ) ? 1 : 0;
+
+            let pageUnit = (pages <= 1) ? 'page' : 'pages';
+            document.write(`You need ${pages} ${pageUnit}. </p>`);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <style>
+        *{
+            list-style: none;
+            /* font: 16px Calibri; */
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template-->
+        <!-- <input v-model="message"> -->
+        <input :value="message" @keyup="setMessage">
+        <h2>{{message}}</h2>
+        <hr>
+
+        <textarea v-model="message" cols="21" rows="5"></textarea>
+        <p :style="changeStyle">{{message}}</p>
+    </div>
+
+    <script>
+        new Vue({  
+            el: '#app',
+            data: {  //變數放這裡
+                message: '',
+                
+            },
+            methods: {  //函數(方法)大部分放這裡!
+               setMessage(e){
+                    this.message = e.target.value;
+               },
+            },
+            computed: { //函數(方法)也可以放這裡!但是放這裡的函數，不能傳參數，一定要有傳回值(return)
+                changeStyle(){
+                    return {
+                        whiteSpace: 'pre',
+                        font: '16px monospace',
+                    };
+                },
+            },
+        });
+    </script>
+</body>
+</html>

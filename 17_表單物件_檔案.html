@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <style>
+        *{
+            list-style: none;
+            /* font: 16px Calibri; */
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"> <!--HTML DOM template--> 
+        <!-- <input type="file"> 不能使用 v-model -->       
+       <input type="file" @change="fileChange"> 
+       <p>{{image}}</p>
+       <img :src="image"> 
+    </div>
+
+    <script>
+        new Vue({  
+            el: '#app',
+            data: {  //變數放這裡
+                image: '',
+            },
+            methods: {  //函數(方法)大部分放這裡!
+                fileChange(e){
+                    // console.log(e);
+                    // console.log(e.target);
+                    // console.log(e.target.files[0]);
+
+                    let file = e.target.files[0];
+                    // let file = e.target.files.item(0);
+                    // console.log(file);
+
+                    //參考 HTML5/fileAPI/5_imageRead.html + 6_new.js
+                    let readFile = new FileReader();
+                    readFile.readAsDataURL(file);
+                    readFile.addEventListener('load',(e) => this.image = e.target.result);
+                    // readFile.addEventListener('load',this.loadImage);
+                },
+                // loadImage(e){
+                //     this.image = e.target.result
+                // },
+            },
+            computed: { //函數(方法)也可以放這裡!但是放這裡的函數，不能傳參數，一定要有傳回值(return)
+                
+            },
+        });
+    </script>
+</body>
+</html>

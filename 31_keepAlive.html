@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <button @click="content='lessons'"> Lessons </button>
+        <button @click="content='apply'"> Apply </button>
+        <button @click="content='date'"> Date </button>
+        <button @click="content='nothing'"> Nothing </button>
+        <button @click="content='something'"> Something </button>
+
+        <keep-alive>
+            <component :is="content"></component>
+        </keep-alive>
+    </div>
+
+    <script>
+        Vue.component('lessons', {
+            template: `
+                <ol>
+                    <li> HTML </li>
+                    <li> CSS </li>
+                    <li> JavaScript </li>
+                    <li> jQuery </li>
+                    <li> HTML5 </li>
+                    <li> VueJS </li>
+                </ol>
+            `,
+        });
+        Vue.component('apply', {
+            template: `
+                <form>
+                    <p>
+                        <textarea></textarea>
+                    </p>
+                    <button> Apply </button>
+                </form>    
+            `,
+        });
+        Vue.component('date', {
+            template: `
+                <p>
+                   <input type="checkbox"> Morning 
+                   <input type="checkbox"> Afternoon 
+                   <input type="checkbox"> Evening
+                </p>
+            `,
+        });
+        Vue.component('nothing', {
+            template: `
+                <p>
+                   Name: <input>
+                </p>
+            `,
+        });
+        Vue.component('something', {
+            template: `
+                <p>
+                    <input type="radio" value="male"> Male 
+                    <input type="radio" value="female"> Female 
+                    <input type="radio" value="others"> Others 
+                </p>
+            `,
+        });
+
+        new Vue({  
+            el: '#app', 
+            data: {
+                content: 'lessons',
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <todo-list></todo-list>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+            template: `
+                <li></li>
+            `,
+        });
+        Vue.component('todo-input', {
+            template: `
+                <form>
+                    <input v-model="task">
+                    <button> Submit </button>
+                </form>
+            `,
+        });
+        Vue.component('todo-list', {
+            template: `
+                <div>
+                    <todo-input></todo-input>
+
+                    <ol>
+                        <todo-item></todo-item>
+                    </ol>
+                </div>
+            `,
+        });
+
+        new Vue({  
+            el: '#app', 
+            data: {
+                
+            },
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+<form>
+    <input v-model="task">
+    <button> Submit </button>
+</form>
+<ol>
+    <li></li>
+</ol> 
+-->
