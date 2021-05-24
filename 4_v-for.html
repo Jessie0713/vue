@@ -20,7 +20,7 @@
                 <th>Name</th>
                 <th>Age</th>
             </tr>
-            <tr v-for="item in classmate">
+            <tr v-for="item in classmate"><!--重複產生-->
                 <td>{{item.name}}</td>
                 <td>{{item.age}}</td>
             </tr>
@@ -36,7 +36,7 @@
                 classmate: [{name:'Andy',age:20},
                             {name:'Brian',age:21},
                             {name:'Carl',age:25},
-                            {name:'ellem',age:18},
+                            {name:'Ellen',age:18},
                             
                         ],
             },
