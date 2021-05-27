@@ -12,10 +12,11 @@
             <option v-for="year in years">{{year}}</option>
         </select>
         <select v-model="selectedMonth" @change="changeValue">
+        <!-- <select v-model="selectedMonth" 事件: v-on:change = showMonth(month) 傳摻樹才要小括弧"> -->
             <option v-for="month in 12">{{month}}</option>
 
             <!-- <option v-for="month in months">{{month}}</option> -->
-            <!-- <option v-for="(month,index) in 12" v-bind:value="index">{{month}}</option> -->
+            <!-- <option v-for="(month,index) in 12" v-bind:value="index">{{month}}</option> v-bind值從vue來-->
         </select>
         <select>
             <option v-for="day in 31">{{day}}</option>
