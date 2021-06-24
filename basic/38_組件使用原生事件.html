@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <!-- 使用自訂事件 -->
+        <!-- <my-button @abc="action"></my-button> -->
+
+        <!-- 使用原生事件 -->
+        <my-button @click.native="action"></my-button>
+    </div>
+
+    <script>
+        Vue.component('my-button',{
+            //使用自訂事件
+            // template: `<button @click="temp"> Click me!</button>`,
+            // methods: {
+            //     temp(){
+            //         this.$emit('abc')
+            //     },
+            // },
+
+            //使用原生事件
+            template: `<button> Click me!</button>`,
+        });
+
+        new Vue({  
+            el: '#app', 
+            data: {},
+            methods: {
+                action(){
+                    alert(`Does it make sense?`);
+                },
+            },
+        });
+    </script>
+</body>
+</html>

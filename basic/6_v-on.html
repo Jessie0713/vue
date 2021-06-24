@@ -13,6 +13,7 @@
         </select>
         <select v-model="selectedMonth" @change="changeValue">
         <!-- <select v-model="selectedMonth" 事件: v-on:change = showMonth(month) 傳摻樹才要小括弧"> -->
+        <!--v-on函數-->
             <option v-for="month in 12">{{month}}</option>
 
             <!-- <option v-for="month in months">{{month}}</option> -->
@@ -44,10 +45,10 @@
                 months: ['January','February','March','April','May','June',
                         'July','August','September','October','November','December'],
                 selectedMonth: new Date().getMonth() + 1,
-            },
+            },//new Date().getMonth()javascript語法
             methods: {  //函數(方法)大部分放這裡!
-                changeValue(e){  //changeValue: function(){},
-                    console.log(e.target);
+                changeValue(e){  //changeValue: function(){}, 遇到function的寫法,event參數
+                    console.log(e.target);//e.target物件本身，e.target 不等於 this
                 },
                 CFD101(yourName){
                     alert(`CFD101 member: ${yourName}`);

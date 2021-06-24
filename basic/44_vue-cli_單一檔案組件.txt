@@ -1,0 +1,95 @@
+單一檔案組件 (vue-cli)
+1. 將 HTML, CSS, JavaScript 放在同一個檔案中 (.vue), 這個檔案就是『一個』組件。
+    這個檔案需要經過轉換和打包，才能在瀏覽器上運行
+2. vue-cli: webpack 的開發工具
+
+   node.js(使用LTS): (https://nodejs.org/en/) 讓電腦可以直接執行 JavaScript 的環境
+   npm: node.js 裡面的軟體，會跟著 node.js 自動安裝套件，其中一個套件叫做 webpack (https://zh.wikipedia.org/wiki/Npm)
+   webpack: 是一個轉換工具，可以將單一檔案組件打包成一個 .js 檔案
+   vue-cli: 由於 webpack 設定繁複，所以 Vue 開發團隊開發這套工具，讓使用者方便建立 webpack
+---------------------------------------------------------------------------------
+安裝
+ - node.js
+ - 命令提示字元，將目標 change 到 VueJS 資料夾
+    指令: npm i -g vue-cli      (讓 npm 幫你從雲端下載並安裝 vue-cli)
+    指令: vue                   (看看 vue 有哪些指令可以用)
+    指令: vue list              (看看 vue 有哪些 template 可以用)
+    指令: vue init webpack-simple vue-lessons  (vue init webpack-simple 專案名稱)        
+    上述都正確之後，終端機會要求以下指令: 
+        cd vue-lessons
+        npm install
+        npm run dev
+
+    ==================================================================
+    | [Windows] 尋找命令提示視窗                                        |
+    | 1. Windows --> 左下角按右鍵 --> 執行 --> cmd                      |
+    | 2. VScode --> 新增終端機                                         |
+    | 3. 檔案總管 VueJS 資料夾內空白處 --> shift+右鍵 --> power shell視窗 | 
+    |                                                                |
+    | 找到 VueJS 資料夾內空白處                                         |                                                             |
+    | C:\XXX\OOO> cd..                                               |
+    | C:\XXX> cd..                                                   |
+    | C:\> cd..                                                      |
+    | C:\> cd web\VueJS [enter]                                      |
+    | C:\web\VueJS>                                                  |
+    |                                                                |
+    | [MAC] 打開終端機                                                 |
+    | （mac 如何複製所在資料夾的路徑 :  command + option + c ）           |
+    ==================================================================
+
+---------------------------------------------------------------------------------
+.vue 檔案裡
+
+<template> HTML DOM template </template>
+<script> JS的程式 </script>
+<style> CSS </style>
+
+1. 不一定要有 <style>，如果有，一定要放在最後面
+2. <template> 和 <script> 起碼要有一個，順序沒有關係
+---------------------------------------------------------------------------------
+關於 import 和 export
+[假設] 兩個檔案 App.vue 和 counter.vue
+      counter 組件要給 App 組件使用
+      所以 App 組件要『引用｜匯入』 counter 組件，而 counter 組件要『匯出』
+      ----------
+      [counter 組件]:
+      const Counter = Vue.component('counter',{
+          .......
+      });
+      export Counter;
+      ----------
+      [App 組件]:
+      import Counter from 'counter';   //import 組件名稱 from '相對路徑';
+                                       // 副檔名 .js (.vue) 可省略
+    
+      new Vue({
+          el: '#app',
+          components:{
+            Counter,   //Counter:Counter,
+          },
+          template: `
+            <div>
+                <Counter/>
+            </div>
+          `,
+      });
+
+---------------------------------------------------------------------------------
+src/main.js 
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+}) 
+
+render: h => h(App) 是什麼意思？ 
+render 函數會傳入一個 
+createElement()：用來輸入一個組件，回傳他要輸出的元素
+render: function(createElement){
+    return createElement(呼叫一個組件);
+}
+簡化的寫法
+render: createElement => createElement(App)
+
+慣例上, createElement 簡寫成 h
+render: h => h(App)

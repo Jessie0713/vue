@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <!-- 修改自 37_下層傳送資料到上層_emit自訂事件.html -->
+    <div id="app"> <!--HTML DOM template--> 
+        <!-- <counter @自訂事件="函數(方法)"></counter> -->
+        <!-- 1 -->
+        <!-- <counter @my-emit="setOuterCount"></counter>
+        <h1> {{outerCount}} </h1> -->
+
+        <!-- 2 -->
+        <!-- <counter :the-count="outerCount" @my-emit="setOuterCount"></counter>
+        <h1> {{outerCount}} </h1> -->
+
+        <!-- 3 加上修飾符sync -->
+        <!-- <counter v-bind:the-count.sync="outerCount"></counter> -->
+        <counter :the-count.sync="outerCount"></counter>
+        <h1> {{outerCount}} </h1>
+        
+    </div>
+
+    <script>
+        Vue.component('counter',{
+            props: ['the-count'],
+            data(){
+                return {
+                    // 1
+                    // innerCount: 0,
+
+                    // 2
+                    innerCount: this.theCount,
+                };
+            },
+            template: `
+                <div>
+                    <button @click="innerCount+=1"> Add </button>
+                    <button @click="sync"> Sync </button>
+                    <h1 style="color: green;"> {{innerCount}} </h1>
+                </div>
+            `,
+            methods: {
+                sync(){
+                    // this.$emit('my-emit',this.innerCount);  //發出自訂事件 my-emit
+
+                    // 3 加上修飾符sync
+                    this.$emit('update:theCount',this.innerCount);
+                },
+            },
+        });
+
+        new Vue({  
+            el: '#app', 
+            data: {
+                outerCount: 0,
+            },
+            methods: {
+                // 3 加上修飾符sync，註解以下
+                // setOuterCount(count){
+                //     this.outerCount = count;
+                // }
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <button @click="count+=1"> Add </button>
+        <h1> {{count}} </h1>
+
+        <!-- <counter v-bind:init="count"></counter> -->
+        <counter :init="count"></counter>
+        <!-- 上層將資料傳到下層，要由上層 (v-bind) 『自訂屬性名稱』ex.『init』 -->
+    </div>
+
+    <script>
+        new Vue({  
+            el: '#app', 
+            data: {
+                count: 0,
+            },
+            components:{
+                counter: {
+                    props: ['init'],
+                    data(){
+                        return {
+                            count: this.init,
+                        };
+                    },
+                    template: `
+                      <div>
+                        <button @click="count+=1"> Add </button>
+                        <h1 style="color:green;"> {{count}} </h1>
+                      </div>
+                    `,
+                },
+            },
+        });
+    </script>
+</body>
+</html>

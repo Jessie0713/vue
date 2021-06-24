@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <!-- 第一個例子 -->
+        <!-- 1 -->
+        <!-- <my-button></my-button> -->
+        <!-- 2,3,4 -->
+        <!-- <my-button @the-abc="action"></my-button> -->
+
+        <!-- 第二個例子 -->
+        <!-- <counter></counter> -->
+
+        <counter @my-emit="action"></counter>
+        <h1> {{count}} </h1>
+    </div>
+
+    <script>
+        // 第二個例子
+        Vue.component('counter',{
+            data(){
+                return {
+                    count: 0,
+                };
+            },
+            template: `
+                <div>
+                    <button @click="count+=1"> Add </button>
+                    <button @click="sync"> Sync </button>
+                    <h1 style="color: green;"> {{count}} </h1>
+                </div>
+            `,
+            methods: {
+                sync(){
+                    this.$emit('my-emit',this.count);  //發出自訂事件 my-emit
+                },
+            },
+        });
+
+        // 第一個例子
+        Vue.component('my-button',{
+            template: `<button @click="myClick"> Click me!</button>`,
+            methods: {
+                myClick(){
+                    // 1
+                    // alert('Hi, Child!');
+
+                    // 2 沒有帶參數
+                    // this.$emit('the-abc');  //child 發出自訂事件
+
+                    // 3 帶一個參數
+                    // this.$emit('the-abc',100);  //child 發出自訂事件，並傳送一筆資料
+
+                    // 4 帶很多參數
+                    // this.$emit('the-abc',100,200,300);  //child 發出自訂事件，並傳送三筆資料
+                },
+            },
+        });
+
+        new Vue({  
+            el: '#app', 
+            data: {
+                count: 500,
+            },
+            methods: {
+            // 第一個例子
+                // 2
+                // action(){
+                //     alert('Hi. Parent!');
+                // },
+
+                // 3
+                // action(x){
+                //     alert(`Hi. Parent! Give me ${x} dollars.`);
+                // },
+
+                // 4
+                // action(x,y,z){
+                //     alert(`Hi. Parent! Give me ${x} or ${y} or ${z} dollars.`);
+                // },
+
+            // 第二個例子 
+                action(count){
+                    this.count = count;
+                },
+            },
+        });
+    </script>
+</body>
+</html>

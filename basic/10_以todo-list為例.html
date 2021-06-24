@@ -53,8 +53,8 @@
                 },
                 removeTask(index){
                     // this.tasks.splice(index);
-                    // this.tasks.splice(index,刪除的筆數);
-                    this.tasks.splice(index,1);
+                    // this.tasks.splice(index,刪除的筆數(從他自己開始));
+                    this.tasks.splice(index,1);//
                 },
             },
             computed: { //函數(方法)也可以放這裡!但是放這裡的函數，不能傳參數，一定要有傳回值(return)

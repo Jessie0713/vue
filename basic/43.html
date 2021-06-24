@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 組件之間的溝通</title>    
+    <script src="../js/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.js"></script>
+</head>
+<body> 
+    <!--  
+        如果組件之間不是上下層(也就是沒有直接關係)，要如何溝通？
+        1. 將會影響彼此的值放到 new Vue() ===> 41_組件之間的溝通1.html
+        2. event bus ===> 本程式
+            透過共同的 event bus: 
+            一個組件發出自訂事件: bus.$emit('自訂事件');
+            另一個組件聆聽該事件: bus.$on('自訂事件',function(){});
+        3. Vuex ===> 43_組件之間的溝通3_vuex.html
+    -->
+    <div id="app"> <!--HTML DOM template-->
+        <button @click = "addCount">Add</button>
+        <h1>{{count}}</h1>
+    </div>
+
+    <script>
+        const store = new Vuex.Store({
+          state:{//類似new Vue() 裡的 data
+            count:0,
+            x: 100,
+            y:true,
+            Z:['ABC',123,false],
+          },
+          mutations:{//類似new Vue() 裡的 methods
+                    // Vuex 裡面只有mutatioms 可以修改state 裡面的值
+            addCount(state){
+              state.count +=1;
+            },
+            addCountAAA(state,payload){//自定義名稱
+              state.count += payload;
+            },
+            addCountBBB(state,payload){
+              state.count += payload[0] * payload[1];
+            },
+
+          },
+        });
+        new Vue({  
+            el: '#app',
+            store,//store: store
+            data:{
+              // count: 0,
+            },
+            methods: {
+              addCount(){
+                // this.$store.commit('addCount');
+                // this.$store.commit('addCountAAA',100);//commit 呼叫
+                this.$store.commit('addCountBBB',[10,5]);
+              },
+            },
+            computed:{
+              count(){
+                return this.$store.state.count;
+              }
+            },
+        });
+    </script>
+</body>
+</html>

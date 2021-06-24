@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX useing jQuery</title>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#loadButton').click(function(){
+                // $('#feedback').load('./removeImage.html');
+                // $('#feedback').load('./getParameter.php');
+                $('#feedback').load('./getParameter.php',{name: 'Peter',age: 40});
+            });
+            $('#getButton').click(function(){
+                $.get('./getParameter.php',{name: 'Peter',age: 40},function(res){
+                    $('#feedback').html(`<h1 style="color:darkgreen;"> ${res} </h1>`);
+                });
+            });
+            $('#postButton').click(function(){
+                $.post('./getParameter.php',{name: 'Peter',age: 40},function(res){
+                    $('#feedback').html(`<h1 style="color:darkgreen;"> ${res} </h1>`);
+                });
+            });
+            
+            $('#getJSONButton').click(function(){
+                $.getJSON('./XML_JSON_CSV/bookData.json', function(res){
+                    $('#feedback').html(`<h1 style="color:maroon;"> ${res[0]} </h1>`);
+                });
+            });
+            
+            $('#ajaxButton').click(function(){
+                $.ajax({
+                    url: './getParameter.php',
+                    data: {name: 'Peter',age: 40},
+                    type: 'GET',
+                    success(res){
+                        $('#feedback').html(`<h1 style="color:darkgreen;"> ${res} </h1>`);
+                    },
+                });
+
+
+
+                // $.ajax();
+                // $.ajax({});
+                // $.ajax({
+                //     url: ,      // 呼叫的檔案或網址列
+                //     data: ,     // 傳送到 server 端的資料，會自動轉成字串形式
+                //     type: ,     // GET 或 POST
+                //     dataType: , // response 的資料格式 xml | html | script | json | jsonp | text
+                //     success(){},
+                //     error(){},
+                //     complete(){},
+                // });
+            });
+        });
+    </script>
+</head>
+<body>  
+   <p>
+       <button id="loadButton"> Load </button>
+       <button id="getButton"> Get </button>
+       <button id="postButton"> Post </button>
+       <button id="getJSONButton"> getJSON </button>
+       <button id="ajaxButton"> AJAX </button>
+   </p>
+   <div id="feedback"></div>
+</body>
+</html>

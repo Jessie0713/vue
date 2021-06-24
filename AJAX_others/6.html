@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src=""></script>
+</head>
+<body>
+  <h2>CSV to table</h2>
+  <div>
+    <button id = "loadButton"> load data</button>
+  </div>
+  
+  <script>
+    $('#loadButton').click(function(){
+      $.ajax({
+        url:'./XML_JSON_CSV/AtoE.csv',
+        dataType:'text',
+        success(res){
+          //console.log(res);
+          let theData = res.split(/\n|\r\b/);//match on \n or \r\n，一列一列切好，陣列
+
+          let tableData = `<table>`;
+
+          tableData += `</table>`;
+          for(let i = 0; i < theData.length; i++){
+            let cellData = theData[i].split(',');//字串切割成陣列(name,age,gender)
+            tableData += `<tr>`;
+              for(let j = 0; j < cellData.length; j++){
+                if(i == 0){
+                  tableData += `<th>${cellData[j]}</th>`
+                }else{
+                  tableData += `<td>${cellData[j]}</td>`
+                }
+              }
+            tableData += `<tr>`;
+
+          }
+          tableData = `<table>`;
+          $()
+        },
+      })
+    })
+    //回傳格式無csv(excel 檔)
+  </script>
+</body>
+</html>

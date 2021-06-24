@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+      <button @click="count+1"></button>
+      <h1>{{count}}</h1>
+      <!-- <counter v-bind:init="count"></counter> -->
+      <counter :init="count"></counter>
+    </div>
+
+    <script>
+
+        new Vue({  
+            el: '#app', 
+            data: {
+              count:0,
+            },
+            components:{
+              counter:{
+               data(){
+                 return{
+                   count: 100,
+                 };
+               },
+               template:`
+               `
+
+
+              }
+            }
+        });
+    </script>
+</body>
+</html>
+

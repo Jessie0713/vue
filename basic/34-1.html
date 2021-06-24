@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <!-- 1 -->
+        <!-- <post :the-text="message"></post> v-bind-->
+
+        <!-- 2 處理陣列-->
+        <!-- <post v-for="message in messageArray" :the-text="message"></post>  -->
+        <!-- 3 處理陣列裡的物件-->
+        <!-- <post v-for="obj in messageObject" :the-text="obj.message" :author="obj.owner"></post>  -->
+        <!-- 4 render 陣列裡的物件-->
+        <post v-for="obj in messageObject" v-bind="obj" />
+    </div>
+
+    <script>
+        // Vue.component('post', {//指改名
+        //     // props: ['message','text'],
+        //     // template: `
+        //     //     <h1> {{message}}{{text}}</h1>
+        //     // `,
+        //     props: ['the-message','the-text'],
+        //     template: `
+        //         <h1> {{theMessage}}{{theText}}</h1> <!--HTML DOM template--> 
+        //     `,
+        //     //template 使用上cammalCase
+        // });
+        new Vue({  
+            el: '#app', 
+            data: {
+              //1
+              message:'Hello, Props!' , 
+              //2建立陣列
+              messageArray:['Hello','Props','World','!'],
+              //3,4建立陣列裡的物件
+              messageObject: [
+                {message:'Hello',owner: 'Andy'},
+                {message:'Props',owner: 'Jessie'},
+                {message:'World',owner: 'Vicky'},
+                {message:'!',owner: 'Ivy'},
+              ]
+            },
+            components:{
+              post:{
+                //1,2
+                // props:['the-text'],
+                // template:`<h1>{{theText}}</h1>`
+
+                //3
+                // props:['the-text','author'],
+                // template:`<h1>@{{author}}@ --{{theText}}</h1>`,
+
+                //4
+                props: ['message','owner'],
+                template: `<h1>%{{owner}}% -- {{message}}</h1>`,
+
+
+              }
+            }
+        });
+    </script>
+</body>
+</html>
+

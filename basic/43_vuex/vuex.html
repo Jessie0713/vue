@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 組件之間的溝通</title>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.js"></script>
+</head>
+<body> 
+    <div id="app"> <!--HTML DOM template-->
+        <button @click="addCount"> Add </button>
+        <h1> {{count}} </h1>
+    </div>
+
+    <script type="module">
+        import store from './store.js'
+
+        // console.log(store.state.count);
+
+        new Vue({  
+            el: '#app',
+            store,   //store: store,
+            methods: {
+                addCount(){
+                    this.$store.commit('addCount');
+                },
+            },
+            computed: {
+                count(){
+                    return this.$store.state.count;
+                },
+            },
+        });
+    </script>
+</body>
+</html>

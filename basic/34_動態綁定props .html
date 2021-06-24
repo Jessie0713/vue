@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <!-- 1 -->
+        <!-- <post :the-text="message"></post> -->
+
+        <!-- 2 處理陣列-->
+        <!-- <post v-for="message in messageArray" :the-text="message"></post> -->
+
+        <!-- 3 處理陣列裡的物件 -->
+        <!-- <post v-for="obj in messageObject" :the-text="obj.message" :author="obj.owner" /> -->
+
+        <!-- 4 render 陣列裡的物件 -->
+        <post v-for="obj in messageObject" v-bind="obj" />
+        
+    </div>
+
+    <script>
+        new Vue({  
+            el: '#app', 
+            data: {
+                // 1
+                // message: 'Hello, Props!',
+
+                // 2 建立陣列
+                messageArray: ['Hello','Props','World','!'],
+
+                // 3,4 建立陣列裡的物件
+                messageObject: [
+                    {message: 'Hello', owner: 'Andy'},
+                    {message: 'Props', owner: 'Bella'},
+                    {message: 'World', owner: 'Carl'},
+                    {message: '!',     owner: 'Diane'},
+                ],
+            },
+            components:{
+                post: {
+                    // 1,2
+                    // props: ['the-text'],
+                    // template: `<h1>{{theText}}</h1>`,
+
+                    // 3
+                    // props: ['the-text','author'],
+                    // template: `<h1>@{{author}}@ -- {{theText}}</h1>`,
+
+                    // 4
+                    props: ['message','owner'],
+                    template: `<h1>%{{owner}}% -- {{message}}</h1>`,
+                },
+            },
+        });
+    </script>
+</body>
+</html>

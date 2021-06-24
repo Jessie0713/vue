@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body> 
+    <!-- 如果組件間沒關西的溝通 -->
+    <div id="app"> <!--HTML DOM template-->
+     <my-button></my-button>
+     <my-counter></my-counter>
+    </div>
+
+    <script>
+      let bus = new Vue();
+        Vue.component('my-button',{
+            template:`<button @click="action">add</button>`,
+            methods: {
+              action(){
+                bus.$emit(x,y,z);//自訂事件
+              }
+              
+            },
+           });
+         Vue.component('my-counter',{
+            template:`<h1>{{count}}}</h1>`,
+            data(){
+              return {
+                count: 0,
+              }
+            },
+            mounted() {
+              
+            },
+           });   
+
+        new Vue({  
+            el: '#app', 
+        });
+    </script>
+</body>
+</html>

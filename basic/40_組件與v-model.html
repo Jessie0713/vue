@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body> 
+    <!-- 延續上一個程式 -->
+    <div id="app"> <!--HTML DOM template-->
+        <!-- <counter :the-count.sync="outerCount"></counter> -->
+        <counter v-model="outerCount"></counter>
+        <h1> {{outerCount}} </h1>
+    </div>
+
+    <script>
+        Vue.component('counter',{
+            // 加了 v-model 之後
+            // 自訂屬性和自訂事件
+            // prop: ['the-count'],
+            // event: 'update:theCount',
+
+            model: {
+                prop: ['the-count'],
+                event: 'update:theCount',
+            },
+
+
+            props: ['the-count'],
+            data(){
+                return {
+                    innerCount: this.theCount,
+                };
+            },
+            template: `
+                <div>
+                    <button @click="innerCount+=1"> Add </button>
+                    <button @click="sync"> Sync </button>
+                    <h1 style="color: green;"> {{innerCount}} </h1>
+                </div>
+            `,
+            methods: {
+                sync(){
+                    this.$emit('update:theCount',this.innerCount);
+                },
+            },
+        });
+
+        new Vue({  
+            el: '#app', 
+            data: {
+                outerCount: 0,
+            },
+        });
+    </script>
+</body>
+</html>

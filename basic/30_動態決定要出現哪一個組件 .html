@@ -7,13 +7,13 @@
 </head>
 <body>  
     <div id="app"> <!--HTML DOM template--> 
-        <button @click="content='lessons'"> Lessons </button>
+        <button @click="content='lessons'"> Lessons </button><!--@v-on縮寫--> 
         <button @click="content='apply'"> Apply </button>
         <button @click="content='date'"> Date </button>
         <button @click="content='nothing'"> Nothing </button>
         <button @click="content='something'"> Something </button>
 
-        <component :is="content"></component>
+        <component :is="content"></component><!--動態改變組件--> 
     </div>
 
     <script>
@@ -68,7 +68,7 @@
         new Vue({  
             el: '#app', 
             data: {
-                content: 'lessons',
+                content: 'apply',//預設是哪個組件
             },
         });
     </script>

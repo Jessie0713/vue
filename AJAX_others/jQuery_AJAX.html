@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX useing jQuery</title>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#loadButton').click(function(){
+                // $('#feedback').load('./removeImage.html');
+                // $('#feedback').load('./getParameter.php');
+                $('#feedback').load('./getParameter.php',{name: 'Peter',age: 40});
+            });
+            $('#getButton').click(function(){
+                $.get('./getParameter.php',{name: 'Peter',age: 40},function(res){
+                    $('#feedback').html(`<h1 style="color:darkgreen;"> ${res} </h1>`);
+                });
+            });
+            $('#postButton').click(function(){
+                $.post('./getParameter.php',{name: 'Peter',age: 40},function(res){
+                    $('#feedback').html(`<h1 style="color:darkgreen;"> ${res} </h1>`);
+                });
+            });
+            $('#getJSONButton').click(function(){});
+            $('#ajaxButton').click(function(){});
+        });
+    </script>
+</head>
+<body>  
+   <p>
+       <button id="loadButton"> Load </button>
+       <button id="getButton"> Get </button>
+       <button id="postButton"> Post </button>
+       <button id="getJSONButton"> getJSON </button>
+       <button id="ajaxButton"> AJAX </button>
+   </p>
+   <div id="feedback"></div>
+</body>
+</html>

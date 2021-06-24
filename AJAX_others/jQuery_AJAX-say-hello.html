@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX useing jQuery</title>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#loadButton').click(function(){
+                // $('#feedback').load('./removeImage.html');
+                // $('#feedback').load('./getParameter.php');
+                $('#feedback').load('./getParameter.php',{name: 'Peter',age: 40});
+            });
+            $('#getButton').click(function(){
+                $.get('./getParameter.php',{name: 'Peter',age: 40},function(res){
+                    $('#feedback').html(`<h1 style="color:darkgreen;"> ${res} </h1>`);
+                });
+            });
+            $('#postButton').click(function(){
+                $.post('./getParameter.php',{name: 'Peter',age: 40},function(res){
+                    $('#feedback').html(`<h1 style="color:darkgreen;"> ${res} </h1>`);
+                });
+            });
+            $('#getJSONButton').click(function(){});
+            $('#ajaxButton').click(function(){});
+            $('#jaxButton').click(function(){
+                $.ajax
+            })
+            
+        });
+    </script>
+</head>
+<body>  
+   name : <input type="text" id = "name">
+   <p>
+     <textarea name="" id="" cols="30" rows="10"></textarea>
+   </p>
+</body>
+</html>

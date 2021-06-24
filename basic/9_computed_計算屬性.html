@@ -12,7 +12,7 @@
             現在時間: {{now}}
         </p>
         <p>
-            Weight: <input v-model="weight">
+            Weight: <input v-model="weight"><!--單一標籤雙向綁定用v-model-->
         </p>
         <p>
             Height: <input v-model="height">
@@ -38,15 +38,15 @@
             computed: { //函數(方法)也可以放這裡!但是放這裡的函數，不能傳參數，一定要有傳回值(return)
                 calculate(){
                     if(this.weight > 0 && this.height > 0){
-                        let BMI = this.weight / Math.pow((this.height / 100), 2);
-                        return BMI.toFixed(2);
+                        let BMI = this.weight / Math.pow((this.height / 100), 2);//Math. pow(底数,几次方)
+                        return BMI.toFixed(2);//toFixed 小數點第幾位，下一位四捨五入
                     }else{
                         return 0;
                     }
                 },
                 now(){
-                    let donothing = this.weight + this.height;
-                    return new Date();
+                    // let donothing = this.weight + this.height;
+                    return new Date();//new Date()顯示現在日期
                 }
             },
         });

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>    
+    <script src="../js/vue.js"></script>
+</head>
+<body>  
+    <div id="app"> <!--HTML DOM template--> 
+        <my-component the-message="Hello" the-text="VueJS"></my-component><!--上層組件，屬性複合字請用減號，只又vue--> 
+    </div>
+
+    <script>
+        Vue.component('my-component', {
+            // props: ['message','text'],
+            // template: `
+            //     <h1> {{message}}{{text}}</h1>
+            // `,
+            props: ['the-message','the-text'],
+            template: `
+                <h1> {{theMessage}}{{theText}}</h1> <!--HTML DOM template--> 
+            `,
+            //template 使用上cammalCase
+        });
+        new Vue({  
+            el: '#app', 
+            data: {
+                
+            },
+        });
+    </script>
+</body>
+</html>
+
